@@ -6,6 +6,6 @@ class Cards:
     def __init__(self):
         self.arkham_db_client = ArkhamDbRestClient()
 
-    def map_card_codes_to_card_names(self, card_codes):
-        card_objects = list(map(lambda card_code: json.loads(self.arkham_db_client.get_card(card_code).text), card_codes))
-        return list(map(lambda card: card['name'], card_objects))
+    def map_card_code_to_card_name(self, card_code):
+        card_object = json.loads(self.arkham_db_client.get_card(card_code).text)
+        return card_object['name'].upper()
