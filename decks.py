@@ -9,6 +9,6 @@ class Decks:
     def deck_exists(self, deck_id):
         return self.arkham_db_client.get_deck(deck_id).headers['content-type'] == 'application/json'
     
-    def check_deck_for_card_codes(self, deck_id, taboo_card_codes_arr):
+    def check_deck_for_card_codes(self, deck_id, taboo_card_codes):
         card_codes_from_deck = list(json.loads(self.arkham_db_client.get_deck(deck_id).text)['slots'].keys())
-        return list(set(taboo_card_codes_arr).intersection(card_codes_from_deck))
+        return list(set(taboo_card_codes).intersection(card_codes_from_deck))
